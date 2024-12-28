@@ -1,4 +1,4 @@
-// File: /Users/matheuschimendes/restaurant-app/app/pages/api/produto/[id]/route.ts
+// File: /Users/matheuschimendes/restaurant-app/app/pages/api/produto/[id]/route.tsx
 import * as entry from '../../../../../../../app/pages/api/produto/[id]/route.js'
 import type { NextRequest } from 'next/server.js'
 

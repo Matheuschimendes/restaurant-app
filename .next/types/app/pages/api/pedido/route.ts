@@ -1,4 +1,4 @@
-// File: /Users/matheuschimendes/restaurant-app/app/pages/api/pedido/route.ts
+// File: /Users/matheuschimendes/restaurant-app/app/pages/api/pedido/route.tsx
 import * as entry from '../../../../../../app/pages/api/pedido/route.js'
 import type { NextRequest } from 'next/server.js'
 
