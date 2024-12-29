@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 type ItemPedido = {
-  nome: string;
+  nomeProduto: string;
   preco: number;
 };
 

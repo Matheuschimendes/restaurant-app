@@ -8,7 +8,7 @@ type Produto = {
   id?: number; // `id` é opcional para POST
   nomeProduto: string; // Nome corrigido para nomeProduto
   preco: number;
-  tipo: "comida" | "sobremesa";
+  tipo: "espeto" | "sobremesa" | "acompanhamento" | "bebidas";
   descricao?: string;
 };
 

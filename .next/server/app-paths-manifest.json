@@ -1,10 +1,5 @@
 {
-  "/pages/api/produto/[id]/route": "app/pages/api/produto/[id]/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/pages/api/pedido/route": "app/pages/api/pedido/route.js",
-  "/page": "app/page.js",
   "/pages/dashboard/page": "app/pages/dashboard/page.js",
-  "/pages/login/page": "app/pages/login/page.js",
-  "/pages/produto/page": "app/pages/produto/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/pages/api/pedido/route": "app/pages/api/pedido/route.js"
 }

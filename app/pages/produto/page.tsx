@@ -7,7 +7,7 @@ type Produto = {
   id: number;
   nomeProduto: string;
   preco: number;
-  tipo: "comida" | "sobremesa";
+  tipo: "espeto" | "sobremesa" | "acompanhamento";
   descricao?: string;
 };
 
@@ -16,8 +16,8 @@ const ProdutosPage = () => {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [nomeProduto, setNomeProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState(0);
-  const [tipoProduto, setTipoProduto] = useState<"comida" | "sobremesa">(
-    "comida"
+  const [tipoProduto, setTipoProduto] = useState<"espeto" | "sobremesa" | "acompanhamento">(
+    "espeto"
   );
   const [descricaoProduto, setDescricaoProduto] = useState("");
   const [produtoEditando, setProdutoEditando] = useState<Produto | null>(null);
@@ -127,7 +127,7 @@ const ProdutosPage = () => {
     setProdutoEditando(null);
     setNomeProduto("");
     setPrecoProduto(0);
-    setTipoProduto("comida");
+    setTipoProduto("espeto");
     setDescricaoProduto("");
   };
 
@@ -210,13 +210,15 @@ const ProdutosPage = () => {
                       id="tipoProduto"
                       value={tipoProduto}
                       onChange={(e) =>
-                        setTipoProduto(e.target.value as "comida" | "sobremesa")
+                        setTipoProduto(e.target.value as "espeto" | "sobremesa" | "acompanhamento")
                       }
                       className="w-full p-4 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     >
-                      <option value="comida">Comida</option>
+                      <option value="espeto">Espeto</option>
                       <option value="sobremesa">Sobremesa</option>
+                      <option value="acompanhamento">Acompanhamento</option>
+                      <option value="bebidas">Bebidas</option>
                     </select>
                   </div>
 
