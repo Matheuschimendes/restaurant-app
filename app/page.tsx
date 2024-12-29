@@ -91,8 +91,8 @@ const MenuPage = () => {
         </select>
       </div>
 
-      {/* Categorias */}
-      <div className="mt-8 max-w-md mx-auto flex space-x-4">
+      {/* Categorias com scroll Horizontal*/}
+      <div className="mt-8 max-w-md mx-auto overflow-x-auto flex space-x-4 p-3">
         {["espeto", "acompanhamento", "bebidas", "sobremesa"].map((categoria) => (
           <button
             key={categoria}
