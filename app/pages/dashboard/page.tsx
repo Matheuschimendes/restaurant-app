@@ -49,45 +49,55 @@ const DashboardPage: React.FC = () => {
           Cadastro de Produtos
         </Link>
       </div>
+
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Pedidos</h2>
-      <div className="">
+
+      <div>
         {pedidos.length > 0 ? (
-          <ul className="grid grid-cols-3 max-[1200px]:grid-cols-1 gap-3 space-y-2">
+          <ul className="grid grid-cols-3 max-[1200px]:grid-cols-1 gap-4">
             {pedidos.map((pedido) => (
-              <li key={pedido.id} className="bg-white p-4 rounded-lg shadow-md">
+              <li
+                key={pedido.id}
+                className="bg-white p-4 rounded-lg shadow-md"
+              >
                 <h3 className="text-xl font-semibold bg-blue-500 rounded-full w-auto p-2 text-center text-white">
                   Mesa {pedido.mesa}
                 </h3>
-                <ul className="mt-2">
+                <ul className="mt-2 space-y-2">
                   {pedido.itens.map((item, index) => (
-                    <li key={index} className="flex justify-between">
-                      <div className="m-2">
-                        <h3 className="text-lg font-semibold">
+                    <li
+                      key={index}
+                      className="flex justify-between items-center"
+                    >
+                      <div>
+                        <h4 className="text-lg font-semibold">
                           {item.nomeProduto}
-                        </h3>
-                        <p className="text-sm">{item.descricao}</p>
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {item.descricao}
+                        </p>
                       </div>
-                      <span className="text-gray-600">
+                      <span className="text-gray-700 font-medium">
                         R$ {item.preco.toFixed(2)}
                       </span>
                     </li>
                   ))}
                 </ul>
-                <div>
-                  <div className="mt-4 flex justify-between">
-                    <span className="font-semibold">Total:</span>
-                    <span className="font-semibold">R$ {pedido.total}</span>
-                  </div>
-                  <span
-                    className={`mt-2 inline-block text-sm font-medium ${
-                      pedido.status === "pendente"
-                        ? "text-yellow-500"
-                        : "text-green-500"
-                    }`}
-                  >
-                    Status: {pedido.status}
+                <div className="mt-4 flex justify-between items-center">
+                  <span className="font-semibold">Total:</span>
+                  <span className="font-semibold text-gray-800">
+                    R$ {pedido.total}
                   </span>
                 </div>
+                <span
+                  className={`mt-2 inline-block text-sm font-medium ${
+                    pedido.status === "pendente"
+                      ? "text-yellow-500"
+                      : "text-green-500"
+                  }`}
+                >
+                  Status: {pedido.status}
+                </span>
               </li>
             ))}
           </ul>

@@ -70,13 +70,12 @@ const DashboardPage = ()=>{
                 children: "Pedidos"
             }, void 0, false, {
                 fileName: "[project]/app/pages/dashboard/page.tsx",
-                lineNumber: 52,
+                lineNumber: 53,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "",
                 children: pedidos.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                    className: "grid grid-cols-3 max-[1200px]:grid-cols-1 gap-3 space-y-2",
+                    className: "grid grid-cols-3 max-[1200px]:grid-cols-1 gap-4",
                     children: pedidos.map((pedido)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
                             className: "bg-white p-4 rounded-lg shadow-md",
                             children: [
@@ -88,129 +87,120 @@ const DashboardPage = ()=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/pages/dashboard/page.tsx",
-                                    lineNumber: 58,
+                                    lineNumber: 63,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                    className: "mt-2",
+                                    className: "mt-2 space-y-2",
                                     children: pedido.itens.map((item, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            className: "flex justify-between",
+                                            className: "flex justify-between items-center",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "m-2",
                                                     children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
                                                             className: "text-lg font-semibold",
                                                             children: item.nomeProduto
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/pages/dashboard/page.tsx",
-                                                            lineNumber: 65,
+                                                            lineNumber: 73,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                            className: "text-sm",
+                                                            className: "text-sm text-gray-600",
                                                             children: item.descricao
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/pages/dashboard/page.tsx",
-                                                            lineNumber: 68,
+                                                            lineNumber: 76,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/pages/dashboard/page.tsx",
-                                                    lineNumber: 64,
+                                                    lineNumber: 72,
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-gray-600",
+                                                    className: "text-gray-700 font-medium",
                                                     children: [
                                                         "R$ ",
                                                         item.preco.toFixed(2)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/pages/dashboard/page.tsx",
-                                                    lineNumber: 70,
+                                                    lineNumber: 80,
                                                     columnNumber: 23
                                                 }, this)
                                             ]
                                         }, index, true, {
                                             fileName: "[project]/app/pages/dashboard/page.tsx",
-                                            lineNumber: 63,
+                                            lineNumber: 68,
                                             columnNumber: 21
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/pages/dashboard/page.tsx",
-                                    lineNumber: 61,
+                                    lineNumber: 66,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mt-4 flex justify-between items-center",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "mt-4 flex justify-between",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "font-semibold",
-                                                    children: "Total:"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/pages/dashboard/page.tsx",
-                                                    lineNumber: 78,
-                                                    columnNumber: 21
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "font-semibold",
-                                                    children: [
-                                                        "R$ ",
-                                                        pedido.total
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/app/pages/dashboard/page.tsx",
-                                                    lineNumber: 79,
-                                                    columnNumber: 21
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "font-semibold",
+                                            children: "Total:"
+                                        }, void 0, false, {
                                             fileName: "[project]/app/pages/dashboard/page.tsx",
-                                            lineNumber: 77,
+                                            lineNumber: 87,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: `mt-2 inline-block text-sm font-medium ${pedido.status === "pendente" ? "text-yellow-500" : "text-green-500"}`,
+                                            className: "font-semibold text-gray-800",
                                             children: [
-                                                "Status: ",
-                                                pedido.status
+                                                "R$ ",
+                                                pedido.total
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/pages/dashboard/page.tsx",
-                                            lineNumber: 81,
+                                            lineNumber: 88,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/pages/dashboard/page.tsx",
-                                    lineNumber: 76,
+                                    lineNumber: 86,
+                                    columnNumber: 17
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: `mt-2 inline-block text-sm font-medium ${pedido.status === "pendente" ? "text-yellow-500" : "text-green-500"}`,
+                                    children: [
+                                        "Status: ",
+                                        pedido.status
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/pages/dashboard/page.tsx",
+                                    lineNumber: 92,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, pedido.id, true, {
                             fileName: "[project]/app/pages/dashboard/page.tsx",
-                            lineNumber: 57,
+                            lineNumber: 59,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/app/pages/dashboard/page.tsx",
-                    lineNumber: 55,
+                    lineNumber: 57,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                     className: "text-gray-500",
                     children: "Nenhum pedido disponível."
                 }, void 0, false, {
                     fileName: "[project]/app/pages/dashboard/page.tsx",
-                    lineNumber: 95,
+                    lineNumber: 105,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/pages/dashboard/page.tsx",
-                lineNumber: 53,
+                lineNumber: 55,
                 columnNumber: 7
             }, this)
         ]
