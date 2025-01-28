@@ -17,14 +17,13 @@ type Pedido = {
   status: string;
 };
 
-const DashboardPage = () => {
-  const [pedidos, setPedidos] = useState<Pedido[]>([]); // Tipagem explícita
+const DashboardPage: React.FC = () => {
+  const [pedidos, setPedidos] = useState<Pedido[]>([]);
 
   useEffect(() => {
     const fetchPedidos = async () => {
       try {
-        // Caminho corrigido da API
-        const response = await fetch("api/pedido/");
+        const response = await fetch("/pages/api/pedido/");
         if (!response.ok) throw new Error("Erro ao carregar pedidos");
         const data: Pedido[] = await response.json();
         setPedidos(data);
@@ -75,7 +74,7 @@ const DashboardPage = () => {
                   ))}
                 </ul>
                 <div>
-                  <div className="mt-4 flex justify-between ">
+                  <div className="mt-4 flex justify-between">
                     <span className="font-semibold">Total:</span>
                     <span className="font-semibold">R$ {pedido.total}</span>
                   </div>

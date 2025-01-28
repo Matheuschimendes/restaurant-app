@@ -7,6 +7,7 @@ type ItemMenu = {
   nomeProduto: string;
   descricao: string;
   preco: number;
+  imagemUrl: string;
   tipo: "espeto" | "sobremesa" | "acompanhamento" | "bebidas";
 };
 
@@ -119,6 +120,7 @@ const MenuPage = () => {
                 <div>
                   <h3 className="text-lg font-semibold">{item.nomeProduto}</h3>
                   <p className="text-sm">{item.descricao}</p>
+                  <h2>{item.imagemUrl}</h2>
                 </div>
                 <div className="text-right">
                   <span className="text-xl font-bold">R$ {item.preco.toFixed(2)}</span>
@@ -143,6 +145,7 @@ const MenuPage = () => {
               {pedido.map((item, index) => (
                 <li key={index} className="flex justify-between">
                   <span>{item.nomeProduto}</span>
+                  <h2>{item.imagemUrl}</h2>
                   <span>R$ {item.preco.toFixed(2)}</span>
                 </li>
               ))}

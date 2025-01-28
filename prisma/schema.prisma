@@ -13,6 +13,7 @@ model Produto {
   preco       Float
   tipo        String // "comida" ou "sobremesa"
   descricao   String? // Descrição do produto (campo opcional)
+  imagemUrl   String? // Url de imagem do produto (campo opcional)
 }
 
 model Pedido {

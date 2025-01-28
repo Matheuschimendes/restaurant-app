@@ -10,6 +10,7 @@ type Produto = {
   preco: number;
   tipo: "espeto" | "sobremesa" | "acompanhamento" | "bebidas";
   descricao?: string;
+  imagemUrl?: string; // Adicionado suporte para o URL da imagem
 };
 
 // GET: Retorna todos os produtos
@@ -27,14 +28,14 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body: Produto = await request.json();
-    const { nomeProduto, preco, tipo, descricao } = body;
+    const { nomeProduto, preco, tipo, descricao, imagemUrl } = body;
 
     if (!nomeProduto || preco <= 0 || !tipo) {
       return NextResponse.json({ message: "Dados do produto inválidos!" }, { status: 400 });
     }
 
     const novoProduto = await prisma.produto.create({
-      data: { nomeProduto, preco, tipo, descricao },
+      data: { nomeProduto, preco, tipo, descricao, imagemUrl },
     });
 
     return NextResponse.json(novoProduto, { status: 201 });
@@ -48,7 +49,7 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const body: Produto = await request.json();
-    const { id, nomeProduto, preco, tipo, descricao } = body;
+    const { id, nomeProduto, preco, tipo, descricao, imagemUrl } = body;
 
     if (!id || id <= 0) {
       return NextResponse.json({ message: "ID inválido!" }, { status: 400 });
@@ -64,7 +65,7 @@ export async function PUT(request: NextRequest) {
 
     const produtoAtualizado = await prisma.produto.update({
       where: { id },
-      data: { nomeProduto, preco, tipo, descricao },
+      data: { nomeProduto, preco, tipo, descricao, imagemUrl },
     });
 
     return NextResponse.json(produtoAtualizado, { status: 200 });

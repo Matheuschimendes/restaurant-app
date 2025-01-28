@@ -91,7 +91,7 @@ async function GET() {
 async function POST(request) {
     try {
         const body = await request.json();
-        const { nomeProduto, preco, tipo, descricao } = body;
+        const { nomeProduto, preco, tipo, descricao, imagemUrl } = body;
         if (!nomeProduto || preco <= 0 || !tipo) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 message: "Dados do produto inválidos!"
@@ -104,7 +104,8 @@ async function POST(request) {
                 nomeProduto,
                 preco,
                 tipo,
-                descricao
+                descricao,
+                imagemUrl
             }
         });
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(novoProduto, {
@@ -123,7 +124,7 @@ async function POST(request) {
 async function PUT(request) {
     try {
         const body = await request.json();
-        const { id, nomeProduto, preco, tipo, descricao } = body;
+        const { id, nomeProduto, preco, tipo, descricao, imagemUrl } = body;
         if (!id || id <= 0) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 message: "ID inválido!"
@@ -151,7 +152,8 @@ async function PUT(request) {
                 nomeProduto,
                 preco,
                 tipo,
-                descricao
+                descricao,
+                imagemUrl
             }
         });
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(produtoAtualizado, {
