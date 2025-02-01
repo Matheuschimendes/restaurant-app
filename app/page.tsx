@@ -220,7 +220,7 @@ const MenuPage = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg w-96">
-            <h2 className="text-2xl font-medium text-center mb-4">Carrinho de Compras</h2>
+            <h2 className="text-2xl font-medium text-center mb-4">Carrinho</h2>
             <ul>
               {pedido.map((item, index) => (
                 <li key={index} className="flex justify-between items-center mb-4">
