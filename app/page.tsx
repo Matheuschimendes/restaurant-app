@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { toast, Toaster } from "sonner";
 
 type ItemMenu = {
   id: number;
@@ -15,7 +16,9 @@ const MenuPage = () => {
   const [mesa, setMesa] = useState<string>("");
   const [pedido, setPedido] = useState<ItemMenu[]>([]);
   const [produtos, setProdutos] = useState<ItemMenu[]>([]);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState<"espeto" | "sobremesa" | "acompanhamento" | "bebidas">("espeto");
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState<
+    "espeto" | "sobremesa" | "acompanhamento" | "bebidas"
+  >("espeto");
 
   useEffect(() => {
     const fetchProdutos = async () => {
@@ -42,7 +45,7 @@ const MenuPage = () => {
 
   const finalizarPedido = async () => {
     if (!mesa || pedido.length === 0) {
-      alert("Por favor, selecione a mesa e adicione itens ao pedido!");
+      toast.error("Por favor, selecione a mesa e adicione itens ao pedido!");
       return;
     }
 
@@ -64,12 +67,18 @@ const MenuPage = () => {
         throw new Error(errorData.message || "Erro ao finalizar pedido.");
       }
 
-      alert(`Pedido finalizado para a mesa ${mesa}. Total: R$ ${calcularTotal()}`);
+      toast.success(
+        `Pedido finalizado para a mesa ${mesa}. Total: R$ ${calcularTotal()}`,
+        { position: "top-right" }
+      );
+
       setMesa("");
       setPedido([]);
     } catch (error) {
       console.error("Erro ao finalizar pedido:", error);
-      alert("Erro ao finalizar pedido. Tente novamente.");
+      toast.error("Erro ao finalizar pedido. Tente novamente.", {
+        position: "top-right",
+      });
     }
   };
 
@@ -94,19 +103,29 @@ const MenuPage = () => {
 
       {/* Categorias com scroll Horizontal*/}
       <div className="mt-8 max-w-md mx-auto overflow-x-auto flex space-x-4 p-3">
-        {["espeto", "acompanhamento", "bebidas", "sobremesa"].map((categoria) => (
-          <button
-            key={categoria}
-            onClick={() => setCategoriaSelecionada(categoria as "espeto" | "acompanhamento"| "bebidas" | "sobremesa"  )}
-            className={`px-6 py-2 rounded-full font-semibold ${
-              categoriaSelecionada === categoria
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-800 hover:bg-blue-500 hover:text-white"
-            }`}
-          >
-            {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
-          </button>
-        ))}
+        {["espeto", "acompanhamento", "bebidas", "sobremesa"].map(
+          (categoria) => (
+            <button
+              key={categoria}
+              onClick={() =>
+                setCategoriaSelecionada(
+                  categoria as
+                    | "espeto"
+                    | "acompanhamento"
+                    | "bebidas"
+                    | "sobremesa"
+                )
+              }
+              className={`px-6 py-2 rounded-full font-semibold ${
+                categoriaSelecionada === categoria
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-800 hover:bg-blue-500 hover:text-white"
+              }`}
+            >
+              {categoria.charAt(0).toUpperCase() + categoria.slice(1)}
+            </button>
+          )
+        )}
       </div>
 
       {/* Menu */}
@@ -115,7 +134,10 @@ const MenuPage = () => {
         {produtos
           .filter((item) => item.tipo === categoriaSelecionada)
           .map((item) => (
-            <div key={item.id} className="bg-white p-4 rounded-lg mb-4 shadow-md">
+            <div
+              key={item.id}
+              className="bg-white p-4 rounded-lg mb-4 shadow-md"
+            >
               <div className="flex justify-between">
                 <div>
                   <h3 className="text-lg font-semibold">{item.nomeProduto}</h3>
@@ -123,7 +145,9 @@ const MenuPage = () => {
                   <h2>{item.imagemUrl}</h2>
                 </div>
                 <div className="text-right">
-                  <span className="text-xl font-bold">R$ {item.preco.toFixed(2)}</span>
+                  <span className="text-xl font-bold">
+                    R$ {item.preco.toFixed(2)}
+                  </span>
                   <button
                     onClick={() => adicionarAoPedido(item)}
                     className="ml-4 bg-blue-500 text-white px-4 py-2 rounded-lg"
@@ -154,17 +178,27 @@ const MenuPage = () => {
               <span>Total:</span>
               <span>R$ {calcularTotal()}</span>
             </div>
-            <button
+            {/* <button
               onClick={finalizarPedido}
               className="w-full mt-4 bg-green-500 text-white py-3 rounded-lg"
             >
               Finalizar Pedido
-            </button>
+            </button> */}
+            <div className="min-h-screen bg-gray-50 p-4">
+              {/* UI permanece igual */}
+              <button
+                onClick={finalizarPedido}
+                className="w-full mt-4 bg-green-500 text-white py-3 rounded-lg"
+              >
+                Finalizar Pedido
+              </button>
+            </div>
           </>
         ) : (
           <p>Nenhum item no pedido.</p>
         )}
       </div>
+      <Toaster position="top-right" richColors />
     </div>
   );
 };

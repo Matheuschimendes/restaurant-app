@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type Produto = {
   id: number;
@@ -13,15 +13,17 @@ type Produto = {
 };
 
 const ProdutosPage = () => {
-  const router = useRouter();
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [nomeProduto, setNomeProduto] = useState("");
   const [precoProduto, setPrecoProduto] = useState(0);
-  const [tipoProduto, setTipoProduto] = useState<"espeto" | "sobremesa" | "acompanhamento">("espeto");
+  const [tipoProduto, setTipoProduto] = useState<
+    "espeto" | "sobremesa" | "acompanhamento"
+  >("espeto");
   const [descricaoProduto, setDescricaoProduto] = useState("");
-  const [imagemProduto, setImagemProduto] = useState<File | null>(null);
+  const [imagemProduto, setImagemProduto] = useState<string | null>(null);
+
   const [produtoEditando, setProdutoEditando] = useState<Produto | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Controla a exibição do modal
 
   useEffect(() => {
     const fetchProdutos = async () => {
@@ -37,12 +39,6 @@ const ProdutosPage = () => {
     fetchProdutos();
   }, []);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setImagemProduto(e.target.files[0]);
-    }
-  };
-
   const handleCadastroProduto = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!nomeProduto || precoProduto <= 0 || isNaN(precoProduto)) {
@@ -55,7 +51,7 @@ const ProdutosPage = () => {
       preco: precoProduto,
       tipo: tipoProduto,
       descricao: descricaoProduto,
-      imagemUrl: imagemProduto ? URL.createObjectURL(imagemProduto) : undefined,
+      imagemUrl: imagemProduto, // URL da imagem
     };
 
     try {
@@ -72,7 +68,11 @@ const ProdutosPage = () => {
           });
 
       if (response.ok) {
-        alert(produtoEditando ? "Produto atualizado com sucesso!" : "Produto cadastrado com sucesso!");
+        alert(
+          produtoEditando
+            ? "Produto atualizado com sucesso!"
+            : "Produto cadastrado com sucesso!"
+        );
         const produtoCadastrado = await response.json();
         setProdutos((prevProdutos) =>
           produtoEditando
@@ -82,7 +82,7 @@ const ProdutosPage = () => {
             : [...prevProdutos, produtoCadastrado]
         );
         resetForm();
-        setIsModalOpen(false);
+        setIsModalOpen(false); // Fecha o modal após o cadastro
       } else {
         alert("Erro ao cadastrar/atualizar produto.");
       }
@@ -116,8 +116,8 @@ const ProdutosPage = () => {
     setPrecoProduto(produto.preco);
     setTipoProduto(produto.tipo);
     setDescricaoProduto(produto.descricao || "");
-    setImagemProduto(null);
-    setIsModalOpen(true);
+    setImagemProduto(produto.imagemUrl || null);
+    setIsModalOpen(true); // Abre o modal ao editar um produto
   };
 
   const resetForm = () => {
@@ -132,136 +132,170 @@ const ProdutosPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 p-6">
       <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-semibold text-center mb-6">Gestão de Produtos</h1>
-        <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
-          <button
-            onClick={() => router.push("/pages/dashboard")}
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 w-full sm:w-auto"
-          >
-            Voltar ao Dashboard
-          </button>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 w-full sm:w-auto"
-          >
-            Adicionar Produto
-          </button>
-        </div>
+        <h1 className="text-2xl font-semibold mb-4">Cadastro de Produtos</h1>
 
-        {isModalOpen && (
-          <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-full sm:w-96">
-              <h2 className="text-xl font-semibold mb-4">
-                {produtoEditando ? "Editar Produto" : "Novo Produto"}
-              </h2>
-              <form onSubmit={handleCadastroProduto} className="space-y-4">
+        {/* Botão para abrir o modal */}
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+        >
+          Cadastrar Novo Produto
+        </button>
+      </div>
+
+      {/* Modal para cadastro/edição */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg w-96">
+            <h2 className="text-2xl font-semibold mb-4">
+              {produtoEditando ? "Editar Produto" : "Cadastrar Produto"}
+            </h2>
+            <form onSubmit={handleCadastroProduto}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Nome do Produto
+                </label>
                 <input
                   type="text"
                   value={nomeProduto}
                   onChange={(e) => setNomeProduto(e.target.value)}
-                  placeholder="Nome do Produto"
-                  className="w-full px-3 py-2 border rounded-lg"
+                  className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                   required
                 />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Preço
+                </label>
                 <input
                   type="number"
                   value={precoProduto}
                   onChange={(e) => setPrecoProduto(parseFloat(e.target.value))}
-                  placeholder="Preço"
-                  className="w-full px-3 py-2 border rounded-lg"
+                  className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                   required
                 />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Tipo
+                </label>
                 <select
                   value={tipoProduto}
                   onChange={(e) =>
-                    setTipoProduto(e.target.value as "espeto" | "sobremesa" | "acompanhamento")
+                    setTipoProduto(
+                      e.target.value as
+                        | "espeto"
+                        | "sobremesa"
+                        | "acompanhamento"
+                    )
                   }
-                  className="w-full px-3 py-2 border rounded-lg"
+                  className="w-full p-2 mt-1 border border-gray-300 rounded-md"
                   required
                 >
                   <option value="espeto">Espeto</option>
                   <option value="sobremesa">Sobremesa</option>
                   <option value="acompanhamento">Acompanhamento</option>
                 </select>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Descrição
+                </label>
                 <textarea
                   value={descricaoProduto}
                   onChange={(e) => setDescricaoProduto(e.target.value)}
-                  placeholder="Descrição"
-                  className="w-full px-3 py-2 border rounded-lg"
-                  rows={3}
+                  className="w-full p-2 mt-1 border border-gray-300 rounded-md"
+                  rows={4}
                 />
-                <input
-                  type="file"
-                  onChange={handleImageUpload}
-                  className="w-full px-3 py-2 border rounded-lg"
-                />
-                <div className="flex flex-col sm:flex-row justify-between gap-4">
-                  <button
-                    type="submit"
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 w-full sm:w-auto"
-                  >
-                    Salvar
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setIsModalOpen(false)}
-                    className="bg-red-500 text-white px-4 py-2 rounded-lg shadow hover:bg-red-600 w-full sm:w-auto"
-                  >
-                    Cancelar
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        )}
+              </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full bg-gray-50 rounded-lg shadow-md overflow-hidden">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="text-left px-4 py-2 font-medium">Nome</th>
-                <th className="text-left px-4 py-2 font-medium">Preço</th>
-                <th className="text-left px-4 py-2 font-medium">Tipo</th>
-                <th className="text-left px-4 py-2 font-medium">Descrição</th>
-                <th className="text-left px-4 py-2 font-medium">Imagem</th>
-                <th className="text-left px-4 py-2 font-medium">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {produtos.map((produto) => (
-                <tr key={produto.id} className="hover:bg-gray-100">
-                  <td className="px-4 py-2">{produto.nomeProduto}</td>
-                  <td className="px-4 py-2">R${produto.preco.toFixed(2)}</td>
-                  <td className="px-4 py-2">{produto.tipo}</td>
-                  <td className="px-4 py-2">{produto.descricao || "-"}</td>
-                  <td className="px-4 py-2">
-                    {produto.imagemUrl && (
-                      <img
-                        src={produto.imagemUrl}
-                        alt={produto.nomeProduto}
-                        className="w-16 h-16 rounded"
-                      />
-                    )}
-                  </td>
-                  <td className="px-4 py-2 space-x-2">
-                    <button
-                      onClick={() => handleEditProduto(produto)}
-                      className="text-blue-500 hover:underline"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      onClick={() => handleDeleteProduto(produto.id)}
-                      className="text-red-500 hover:underline"
-                    >
-                      Excluir
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+           
+
+              <div className="mt-4">
+                <button
+                  type="submit"
+                  className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+                >
+                  {produtoEditando ? "Atualizar Produto" : "Cadastrar Produto"}
+                </button>
+              </div>
+            </form>
+            <button
+              onClick={() => setIsModalOpen(false)} // Fecha o modal
+              className="mt-4 w-full bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
+            >
+              Fechar
+            </button>
+          </div>
         </div>
+      )}
+
+      {/* Exibindo a lista de produtos */}
+
+      <div className="max-w-6xl mx-auto mt-8">
+        <h2 className="text-xl font-semibold mb-4">Lista de Produtos</h2>
+        <table className="min-w-full bg-white shadow-md rounded-lg">
+          <thead>
+            <tr className="border-b">
+              <th className="py-3 px-6 text-left text-sm font-semibold text-gray-700">
+                Imagem
+              </th>
+              <th className="py-3 px-6 text-left text-sm font-semibold text-gray-700">
+                Nome do Produto
+              </th>
+              <th className="py-3 px-6 text-left text-sm font-semibold text-gray-700">
+                Preço
+              </th>
+              <th className="py-3 px-6 text-left text-sm font-semibold text-gray-700">
+                Tipo
+              </th>
+              <th className="py-3 px-6 text-left text-sm font-semibold text-gray-700">
+                Descrição
+              </th>
+              <th className="py-3 px-6 text-left text-sm font-semibold text-gray-700">
+                Ações
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {produtos.map((produto) => (
+              <tr key={produto.id} className="border-b hover:bg-gray-50">
+                <td className="py-3 px-6">
+                  {produto.imagemUrl && (
+                    <Image
+                      src={produto.imagemUrl}
+                      alt={produto.nomeProduto}
+                      width={50}
+                      height={50}
+                      className="object-cover rounded-md"
+                    />
+                  )}
+                </td>
+                <td className="py-3 px-6">{produto.nomeProduto}</td>
+                <td className="py-3 px-6">{produto.preco.toFixed(2)} BRL</td>
+                <td className="py-3 px-6">{produto.tipo}</td>
+                <td className="py-3 px-6">{produto.descricao}</td>
+                <td className="py-3 px-6 flex space-x-2">
+                  <button
+                    onClick={() => handleEditProduto(produto)}
+                    className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => handleDeleteProduto(produto.id)}
+                    className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+                  >
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

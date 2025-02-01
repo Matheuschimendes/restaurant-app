@@ -11,24 +11,27 @@ model Produto {
   id          Int     @id @default(autoincrement())
   nomeProduto String
   preco       Float
-  tipo        String // "comida" ou "sobremesa"
+  tipo        String // "espeto", "sobremesa", "acompanhamento", etc.
   descricao   String? // Descrição do produto (campo opcional)
-  imagemUrl   String? // Url de imagem do produto (campo opcional)
+  imagemUrl   String? // URL da imagem do produto
+  itens       Item[]
 }
 
 model Pedido {
-  id     Int    @id @default(autoincrement())
-  mesa   String
-  total  String
-  status String @default("pendente") // Status do pedido
-  itens  Item[]
+  id        Int      @id @default(autoincrement())
+  mesa      String
+  total     Float
+  status    String   @default("pendente") // Status do pedido
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  itens     Item[]
 }
 
 model Item {
-  id       Int     @id @default(autoincrement())
-  nomeItem String
-  preco    Float
-  tipo     String
-  pedido   Pedido? @relation(fields: [pedidoId], references: [id])
-  pedidoId Int?
+  id         Int     @id @default(autoincrement())
+  quantidade Int     @default(1) // Quantidade do item no pedido
+  produto    Produto @relation(fields: [produtoId], references: [id])
+  produtoId  Int
+  pedido     Pedido? @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+  pedidoId   Int?
 }

@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/pages/pedido-confirmado.tsx_old"],
+  "include": ["next-env.d.tsx", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/pages/pedido-confirmado.tsx_old, "],
   "exclude": ["node_modules"]
 }
