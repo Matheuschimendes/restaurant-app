@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { toast, Toaster } from "sonner";
 
 type ItemMenu = {
+  quantidade: number;
   id: number;
   nomeProduto: string;
   descricao: string;

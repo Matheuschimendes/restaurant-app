@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,6 +23,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.tsx", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/pages/pedido-confirmado.tsx_old, "],
+  "include":  ["next-env.d.tsx", "src", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/pages/pedido-confirmado.tsx_old, "],
   "exclude": ["node_modules"]
 }
+
