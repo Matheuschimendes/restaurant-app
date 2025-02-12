@@ -10,7 +10,7 @@ type Produto = {
   preco: number;
   tipo: "espeto" | "sobremesa" | "acompanhamento" | "bebidas";
   descricao?: string;
-  imagemUrl?: string; // imagemUrl como opcional
+  imagem?: string; // imagemUrl como opcional
 };
 
 // GET: Retorna todos os produtos

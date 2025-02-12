@@ -9,7 +9,7 @@ type ItemMenu = {
   nomeProduto: string;
   descricao: string;
   preco: number;
-  imagemUrl: string;
+  imagem: string;
   tipo: "espeto" | "sobremesa" | "acompanhamento" | "bebidas";
 };
 

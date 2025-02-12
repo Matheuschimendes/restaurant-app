@@ -232,6 +232,7 @@ const ProdutosPage = () => {
           </div>
         </div>
       )}
+      
 
       {/* Exibindo a lista de produtos */}
 
